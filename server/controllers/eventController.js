@@ -61,18 +61,14 @@ exports.getAllEvents = function(req, res){
 
 //get one event
 exports.getOneEvent = function(req, res){
+  var user = req.user;
 
+  db.User.findOne({id: req.user.id})
+    .then(function(user){
+      user.getEvents().
+    });
+};
 
-}
-
-
-//requests to join tables
-exports.addGuest = function(req, res, next){
- //add event to guest/guest to event in join table
- // console.log('ADDGUEST NEXT', next);
- // addGuest(req.body.event, req.body.user, next);
-
-}
 
 
 exports.getAllGuests = function(req, res){
@@ -85,28 +81,44 @@ exports.getAllGuests = function(req, res){
 
 res.send(GuestListData);
 // get all guests for specific event
-  // db.Event.findOne(req.body)
-  //   .then(function(event){
-  //     event.getUsers().then(function(users){
-  //       var userAttributes=[];
-  //       for(var i = 0; users.length > i; i++) {
-  //         if(users[i].UserEvent.status === 'invited'){
-  //           userAttributes.push(users[i].id);
-  //         }
-  //         //do something with userAttributes
-  //         // console.log(userAttributes);
-  //       }
-  //     });
-  //   });
+  db.Event.findOne(req.body.event)
+    .then(function(event){
+      event.getUsers().then(function(users){
+        var userAttributes=[];
+        for(var i = 0; users.length > i; i++) {
+          if(users[i].UserEvent.status === 'invited'){
+            userAttributes.push(users[i].id);
+          }
+          //do something with userAttributes
+          console.log(users);
+        }
+      });
+    });
+
 
 
 };
 
-var addGuest = function(event, guest, next){
- // console.log('HELPER NEXT', event);
+
+var addGuest = function(req, res, next){
+ // console.log('HELPER NEXT', event);  
  // console.log(event);
- // db.User.findOne({name: guest}).then(function(guest){
- //   db.Event.findOne({name: event.name})
+ // db.User.findOne({name: req.body.guest}).then(function(guest){
+ //   db.Event.findOne({name: req.body.event})
+ //   .then(function(event){
+ //     console.log('EVENT', event);
+ //     event.addUser(guest);
+ //     next();
+ //   });
+ // });
+};
+
+
+var addGuest = function(req, res, next){
+ // console.log('HELPER NEXT', event);  
+ // console.log(event);
+ // db.User.findOne({name: req.body.guest}).then(function(guest){
+ //   db.Event.findOne({name: req.body.event})
  //   .then(function(event){
  //     console.log('EVENT', event);
  //     event.addUser(guest);
