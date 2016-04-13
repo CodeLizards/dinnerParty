@@ -4,7 +4,8 @@
   "description": "client side dependencies",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "watch": "webpack --watch"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +18,7 @@
     "babel-runtime": "^6.6.1",
     "babelify": "^7.2.0",
     "bootstrap": "^3.3.6",
+    "cors": "^2.7.1",
     "file-loader": "^0.8.5",
     "less": "^2.6.1",
     "less-loader": "^2.2.3",
@@ -26,7 +28,7 @@
     "react-redux": "^4.4.1",
     "react-router": "^2.0.1",
     "redux": "^3.3.1",
-    "webpack": "^1.12.14",
+    "webpack": "^1.12.15",
     "webpack-dev-server": "^1.14.1"
   },
   "devDependencies": {

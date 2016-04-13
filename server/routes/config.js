@@ -11,6 +11,16 @@ var db = require('../config/init.js')
 
 module.exports = function(app, express){
 
+
+app.use(function(req, res, next) {
+    res.set("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.set('Access-Control-Allow-Headers', 'X-Requested-With, content-type');
+    res.set('Access-Control-Allow-Credentials', true);
+    next();
+});
+
+  app.use(session({ secret: 'SECRET!' }));
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(cookieParser());
@@ -42,23 +52,24 @@ module.exports = function(app, express){
     }
   ));
 
-  app.get('/auth/google', passport.authenticate('google', { scope: [
+  app.get('/auth/google',
+    passport.authenticate('google', { scope: [
        'https://www.googleapis.com/auth/plus.login',
        'https://www.googleapis.com/auth/plus.profile.emails.read'] 
-  }));
+    })
+  );
 
 
 
   app.get('/googlecallback', 
-      passport.authenticate('google', { successRedirect: 'http://localhost:3000/'} )
+    passport.authenticate('google', { successRedirect: 'http://localhost:3000/eventlist'} )
   );
 
-  app.get('/profile', function(req, res){
-    if(req.isAuthenticated()){
-      console.log('AUTH EDDDDDD', req.user);
-      res.redirect('http://localhost:3000/')
-    }
+  app.get('/prof', function(req, res, next){
+    console.log('USER', req.user)
   });
+
+
 
 };
 

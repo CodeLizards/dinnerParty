@@ -7,6 +7,9 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js',
   },
+  devServer: {
+    headers: { "Access-Control-Allow-Origin": "*"},
+  },
   module: {
     loaders: [
       {
