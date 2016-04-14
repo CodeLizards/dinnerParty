@@ -11,15 +11,18 @@ partyRouter.route('/event')
 
 //handles request that wants all guest on specific event
 partyRouter.route('/guestlist')
-  .get(eventController.getAllGuests);
+  .post(eventController.getAllGuests);
 
 //handles request that wants all events on specific user
 partyRouter.route('/eventlist')
   .get(eventController.getAllEvents);
 
 //handles request that wants one specific event
-partyRouter.route('/eventDetails')
-  .get(eventController.getOneEvent);
+partyRouter.route('/addguest')
+  .post(eventController.addGuest);
+
+partyRouter.route('/updateEvent')
+  .post(eventController.updateEvent);
 
 
 

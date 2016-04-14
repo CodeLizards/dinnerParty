@@ -1,6 +1,6 @@
 var pg = require('pg');
 var Sequelize = require('sequelize');
-var db = new Sequelize('dinnerParty', null, null, {
+var db = new Sequelize('dinner', null, null, {
  dialect: 'postgres',
  define: {
    underscored: false,
@@ -8,12 +8,12 @@ var db = new Sequelize('dinnerParty', null, null, {
 });
 
 
-exports.User = db.define('User', {
+exports.User = db.define('users', {
  name: Sequelize.STRING,
  googleId: Sequelize.STRING,  
 });
 
-exports.Event = db.define('Event', {
+exports.Event = db.define('events', {
  name: Sequelize.STRING,
  description: Sequelize.STRING,
  location: Sequelize.STRING,
@@ -21,7 +21,7 @@ exports.Event = db.define('Event', {
  cost: Sequelize.FLOAT
 });
 
-exports.UserEvent = db.define('UserEvent', {
+exports.UserEvent = db.define('userevents', {
  status: Sequelize.STRING
 });
 

@@ -12,15 +12,15 @@ var db = require('../config/init.js')
 module.exports = function(app, express){
 
 
-app.use(function(req, res, next) {
-    res.set("Access-Control-Allow-Origin", "http://localhost:3000");
-    res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.set('Access-Control-Allow-Headers', 'X-Requested-With, content-type');
-    res.set('Access-Control-Allow-Credentials', true);
-    next();
-});
+// app.use(function(req, res, next) {
+//     res.set("Access-Control-Allow-Origin", "http://localhost:3000");
+//     res.set('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+//     res.set('Access-Control-Allow-Headers', 'X-Requested-With, content-type');
+//     res.set('Access-Control-Allow-Credentials', true);
+//     next();
+// });
 
-  app.use(session({ secret: 'SECRET!' }));
+  app.use(session({ secret: 'SECRET!', cookie: { maxAge: 3600000 } }));
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(cookieParser());
@@ -62,12 +62,10 @@ app.use(function(req, res, next) {
 
 
   app.get('/googlecallback', 
-    passport.authenticate('google', { successRedirect: 'http://localhost:3000/eventlist'} )
+    passport.authenticate('google', { successRedirect: 'http://localhost:3000/#/dash'} )
   );
 
-  app.get('/prof', function(req, res, next){
-    console.log('USER', req.user)
-  });
+
 
 
 

@@ -1,9 +1,6 @@
 {
   "name": "unassuming-quasars",
-  "scripts": {
-    "dev": "webpack-dev-server",
-    "watch": "webpack --watch"
-  },
+
   "dependencies": {
     "body-parser": "^1.15.0",
     "cookie-parser": "^1.4.1",
@@ -12,7 +9,6 @@
     "eslint-plugin-jsx-a11y": "^0.6.2",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
-
     "method-override": "^2.3.5",
     "nodemon": "^1.9.1",
     "passport": "^0.3.2",
@@ -45,6 +41,7 @@
     "webpack": "^1.12.15",
     "webpack-dev-server": "^1.14.1"
   },
+
   "devDependencies": {
     "eslint-config-airbnb": "^7.0.0",
     "eslint-plugin-react": "^4.3.0",
